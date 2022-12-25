@@ -1,0 +1,42 @@
+def calculate_bmr(age, gender, weight, height):
+  # The Harris Benedict equation for BMR calculation
+  if gender == "male":
+    bmr = 66 + (13.7 * weight) + (5 * height) - (6.8 * age)
+  elif gender == "female":
+    bmr = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age)
+  else:
+    raise ValueError("Invalid gender")
+
+  return bmr
+
+def calculate_tdee(bmr, activity_level):
+  # Calculate TDEE using BMR and activity level
+  if activity_level == "sedentary":
+    tdee = bmr * 1.2
+  elif activity_level == "lightly active":
+    tdee = bmr * 1.375
+  elif activity_level == "moderately active":
+    tdee = bmr * 1.55
+  elif activity_level == "very active":
+    tdee = bmr * 1.725
+  elif activity_level == "extra active":
+    tdee = bmr * 1.9
+  else:
+    raise ValueError("Invalid activity level")
+
+  return tdee
+
+# Get input from the user
+age = int(input("Enter your age: "))
+gender = input("Enter your gender (male or female): ")
+weight = float(input("Enter your weight in kilograms: "))
+height = float(input("Enter your height in centimeters: "))
+activity_level = input("Enter your activity level (sedentary, lightly active, moderately active, very active, or extra active): ")
+
+# Calculate BMR and TDEE
+bmr = calculate_bmr(age, gender, weight, height)
+tdee = calculate_tdee(bmr, activity_level)
+
+# Print the results
+print("BMR:", bmr)
+print("TDEE:", tdee)
